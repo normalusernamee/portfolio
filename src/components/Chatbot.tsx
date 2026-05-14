@@ -35,7 +35,8 @@ ABOUT:
 - Curious about AI but made it an obsession by choice
 - Likes turning complex problems into elegant solutions
 - Values keeping intellectually busy - always learning and exploring new technologies
-- Sports enthusiast who enjoys staying active
+- Sports enthusiast who enjoys staying active - plays basketball regularly
+- Goes to the gym and strongly believes taking care of the body is just as important as the mind
 - Night shift warehouse operator - demonstrates work ethic and not afraid of hard work
 - Balances academic/research pursuits with practical work experience
 
@@ -94,34 +95,54 @@ Answer questions naturally and conversationally. Be friendly and enthusiastic ab
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:11434/api/generate', {
+      const apiKey = import.meta.env.VITE_GROQ_API_KEY;
+      console.log('API Key exists:', !!apiKey);
+      console.log('API Key length:', apiKey?.length);
+      
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: 'mistral',
-          prompt: `${systemPrompt}\n\nConversation history:\n${messages
-            .map((msg) => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`)
-            .join('\n')}\n\nUser: ${inputValue}\n\nAssistant:`,
-          stream: false,
+          model: 'llama-3.3-70b-versatile',
+          messages: [
+            {
+              role: 'system',
+              content: systemPrompt,
+            },
+            ...messages.map((msg) => ({
+              role: msg.role,
+              content: msg.content,
+            })),
+            {
+              role: 'user',
+              content: inputValue,
+            },
+          ],
           temperature: 0.7,
+          max_tokens: 1024,
         }),
       });
 
+      console.log('Response status:', response.status);
+      
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error response:', errorText);
         throw new Error(
-          'Ollama server is not running. Please start it with: ollama serve'
+          `Failed to get response from Groq API (Status: ${response.status}). ${errorText}`
         );
       }
 
       const data = await response.json();
 
-      if (data.response) {
+      if (data.choices && data.choices[0] && data.choices[0].message) {
         const assistantMessage: Message = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
-          content: data.response.trim(),
+          content: data.choices[0].message.content.trim(),
         };
         setMessages((prev) => [...prev, assistantMessage]);
       }
@@ -133,7 +154,7 @@ Answer questions naturally and conversationally. Be friendly and enthusiastic ab
         content:
           error instanceof Error
             ? error.message
-            : 'Error: Make sure Ollama is running. Start it with: ollama serve',
+            : 'Error: Failed to get response. Please try again.',
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
