@@ -25,7 +25,7 @@ const Projects = () => {
       media: {
         type: "video",
         src: "/videos/house-price-prediction.mp4",
-        poster: "/images/house-price-poster.jpg"
+        poster: "/images/house-price-poster.png"
       },
       links: {
         github: "https://github.com/normalusernamee/australian-house-price-prediction"
@@ -39,7 +39,7 @@ const Projects = () => {
       media: {
         type: "video",
         src: "/videos/hog-demo.mp4",
-        poster: "/images/human-detection-poster.jpg"
+        poster: "/images/hog.png"
       },
       links: {
         github: "#"
@@ -53,7 +53,7 @@ const Projects = () => {
       media: {
         type: "video",
         src: "/videos/spyderweb-demo.mp4",
-        poster: "/images/spyderweb-poster.jpg"
+        poster: "/images/spyderweb-demo.png"
       },
       links: {
         github: "https://github.com/normalusernamee/CITS3403-GroupProject"

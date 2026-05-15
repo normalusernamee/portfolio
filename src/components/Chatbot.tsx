@@ -79,7 +79,9 @@ SKILLS:
 ABOUT SPATIAL MODE DEMULTIPLEXING (SPADE):
 Spatial mode demultiplexing is a quantum imaging technique that separates different spatial modes of light to achieve imaging resolution beyond the classical Rayleigh limit. It's a cutting-edge method in quantum optics that Dheya is researching at ICRAR for improved image reconstruction and analysis.
 
-Answer questions naturally and conversationally. Be friendly and enthusiastic about their work. Mention their work ethic and how they balance intense academic research with practical warehouse work.`;
+Answer questions naturally and conversationally. Be friendly and enthusiastic about their work. Mention their work ethic and how they balance intense academic research with practical warehouse work.
+
+IMPORTANT: Keep your responses SHORT and CONCISE. Avoid long paragraphs. Get straight to the point.`;
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -122,7 +124,7 @@ Answer questions naturally and conversationally. Be friendly and enthusiastic ab
             },
           ],
           temperature: 0.7,
-          max_tokens: 1024,
+          max_tokens: 300,
         }),
       });
 

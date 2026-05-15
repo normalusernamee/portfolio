@@ -7,7 +7,7 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="flex-shrink-0">
             <img 
-              src="/images/profile-photo.jpg"
+              src="/images/profile-photo.png"
               alt="Dheya"
               className="w-96 h-96 md:w-[28rem] md:h-[28rem] rounded-full object-cover border-4 border-dark-accent"
               onError={(e) => {
@@ -34,7 +34,7 @@ const Hero = () => {
             </h2>
             <p className="text-lg md:text-xl text-dark-muted mb-8 max-w-2xl">
               Started in AI “just to see what the hype was about.”
-              Now I’m deep enough to train models for fun and argue with my code at 2am.
+              Now I’m far enough into it where I train models for fun and argue with my code at 2am.
 
               I’m a Computer Science student who’s gone from finding the min and max in a Python list to doing quantum imaging research with ICRAR using machine learning to push past the Rayleigh limit. I love turning impossible looking problems into clean, elegant solutions ... or at least into bugs sophisticated enough to look intentional.
 
