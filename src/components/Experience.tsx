@@ -3,6 +3,12 @@ import React from 'react';
 const Experience = () => {
   const experiences = [
     {
+      title: "Lab Facilitator",
+      company: "The University of Western Australia · Part-time",
+      duration: "Aug 2026 - Present",
+      description: "Lab Facilitator for CITS1401 Programming Principles, supporting students in developing their Python programming skills. Assist with practical lab sessions, answer student questions, and provide guidance on programming concepts and problem-solving. Support unit assessment activities, including exam invigilation."
+    },
+    {
       title: "Honours Research Student",
       company: "ICRAR",
       duration: "Jul 2025 - Present",
